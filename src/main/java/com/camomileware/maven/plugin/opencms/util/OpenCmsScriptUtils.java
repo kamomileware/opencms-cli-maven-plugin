@@ -14,7 +14,7 @@ import java.util.List;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.logging.Log;
 
-import com.camomileware.maven.plugin.opencms.OpenCmsModuleDesc;
+import com.camomileware.maven.plugin.opencms.ModuleDescriptor;
 
 /**
  * 
@@ -101,7 +101,7 @@ public class OpenCmsScriptUtils {
 	 * @return
 	 * @throws IOException
 	 */
-	public static File buildInstallScript(List<OpenCmsModuleDesc> modulesToInstall, String username, String password, boolean addUninstall)
+	public static File buildInstallScript(List<ModuleDescriptor> modulesToInstall, String username, String password, boolean addUninstall)
 			throws IOException {
 		return buildInstallScript(modulesToInstall, username, password, addUninstall, true);
 	}
@@ -116,16 +116,16 @@ public class OpenCmsScriptUtils {
 	 * @return
 	 * @throws IOException
 	 */
-	public static File buildInstallScript(List<OpenCmsModuleDesc> modulesToInstall, String username, String password, boolean addUninstall,
+	public static File buildInstallScript(List<ModuleDescriptor> modulesToInstall, String username, String password, boolean addUninstall,
 			boolean doexit) throws IOException {
 		StringBuilder sb = new StringBuilder();
 		loginCommand(username, password, sb);
-		for (OpenCmsModuleDesc module : modulesToInstall) {
+		for (ModuleDescriptor module : modulesToInstall) {
 			if ((addUninstall && module.isUninstall() == null) || (module.isUninstall() != null && module.isUninstall())) {
 				deleteModuleCommand(module.getModuleName(), sb);
 			}
 		}
-		for (OpenCmsModuleDesc module : modulesToInstall) {
+		for (ModuleDescriptor module : modulesToInstall) {
 			if (module.isInstall() == null || module.isInstall()) {
 				importModuleCommand(module.getModuleFile().getName(), sb);
 			}

@@ -6,7 +6,7 @@ import java.io.File;
  *
  *
  */
-public class OpenCmsModuleDesc {
+public class ModuleDescriptor {
 
 	protected String moduleName;
 	protected File moduleFile;
@@ -37,6 +37,6 @@ public class OpenCmsModuleDesc {
 	public void setUninstall(Boolean uninstall) {
 		this.uninstall = uninstall;
 	}
-	public OpenCmsModuleDesc() {
+	public ModuleDescriptor() {
 	}
 }
