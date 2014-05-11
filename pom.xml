@@ -9,15 +9,17 @@
 	</parent>
 	
 	<groupId>com.kamomileware.maven.plugin.opencms</groupId>
-	<artifactId>opencms-ops-maven-plugin</artifactId>
+	<artifactId>opencms-cli-maven-plugin</artifactId>
+	<version>0.1.0-SNAPSHOT</version>
 	<packaging>maven-plugin</packaging>
 	
-	<name>OpenCms Operative Maven Plugin</name>
+	<name>OpenCms Command Line Maven Plugin</name>
+	<description>Allows operative execution via OpenCmsCommand interface.</description>
 	
 	<scm>
-		<connection>scm:svn:http://karmaware.mine.nu/svn/kw/maven-plugins/opencms-ops-maven-plugin/trunk</connection>
-		<developerConnection>scm:svn:http://karmaware.mine.nu/svn/kw/maven-plugins/opencms-ops-maven-plugin/trunk</developerConnection>
-		<url>http://karmaware.mine.nu/svn/kw/maven-plugins/opencms-ops-maven-plugin/trunk</url>
+		<connection>scm:svn:http://karmaware.mine.nu/svn/kw/maven-plugins/opencms-cli-maven-plugin/trunk</connection>
+		<developerConnection>scm:svn:http://karmaware.mine.nu/svn/kw/maven-plugins/opencms-cli-maven-plugin/trunk</developerConnection>
+		<url>http://karmaware.mine.nu/svn/kw/maven-plugins/opencms-cli-maven-plugin/trunk</url>
 	</scm>
 	
 	<properties>
