@@ -3,21 +3,29 @@
 	<modelVersion>4.0.0</modelVersion>
 	
 	<parent>
-		<groupId>com.kamomileware.maven</groupId>
-		<artifactId>maven-parent</artifactId>
+		<groupId>com.kamomileware.maven.plugin</groupId>
+		<artifactId>maven-plugins-parent</artifactId>
 		<version>1</version>
 	</parent>
 	
+	<groupId>com.kamomileware.maven.plugin.opencms</groupId>
 	<artifactId>opencms-ops-maven-plugin</artifactId>
 	<packaging>maven-plugin</packaging>
 	
 	<name>OpenCms Operative Maven Plugin</name>
+	
+	<scm>
+		<connection>scm:svn:http://karmaware.mine.nu/svn/kw/maven-plugins/opencms-ops-maven-plugin/trunk</connection>
+		<developerConnection>scm:svn:http://karmaware.mine.nu/svn/kw/maven-plugins/opencms-ops-maven-plugin/trunk</developerConnection>
+		<url>http://karmaware.mine.nu/svn/kw/maven-plugins/opencms-ops-maven-plugin/trunk</url>
+	</scm>
 	
 	<properties>
 		<maven.version>3.1.1</maven.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 	</properties>
+	
 	<dependencies>
 		<dependency>
 			<groupId>org.apache.maven.plugin-tools</groupId>
