@@ -1,4 +1,4 @@
-package com.camomileware.maven.plugin.opencms;
+package com.kamomileware.maven.plugin.opencms;
 
 import java.io.File;
 

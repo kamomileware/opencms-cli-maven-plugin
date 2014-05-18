@@ -1,7 +1,8 @@
-package com.camomileware.maven.plugin.opencms.util;
+package com.kamomileware.maven.plugin.opencms.util;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 import java.net.MalformedURLException;
@@ -35,25 +36,35 @@ public class OpenCmsShellStarter {
 	 * @param appServerBaseDir
 	 * @param openCmsServeltMapping
 	 * @param openCmsWebappName
-	 * @param prompt
+	 * @param log
 	 * @param installScript
 	 * @throws MojoExecutionException
 	 */
 	public static void executeOpenCmsScript(File openCmsWebDir, File appServerBaseDir, String openCmsServeltMapping,
-			String openCmsWebappName, String prompt, File installScript) throws MojoExecutionException {
+			String openCmsWebappName, Log log, File installScript) throws MojoExecutionException {
 		// recoge la definición de la clase shell de OpenCms
 		Class<?> cmsShellClazz = getOpenCmsShellClass(openCmsWebDir, appServerBaseDir);
-	
-		try {
-			Constructor<?> cmsShellContructor = cmsShellClazz.getConstructors()[0];
-			Object shell = cmsShellContructor.newInstance(openCmsWebDir.toString(), openCmsServeltMapping, openCmsWebappName, prompt, null);
-			Method startShell = cmsShellClazz.getDeclaredMethod(METHOD_START, start_parameters);
-			startShell.invoke(shell, new FileInputStream(installScript));
+
+        FileInputStream fileInputStream=null;
+        try {
+            Constructor<?> cmsShellContructor = cmsShellClazz.getConstructors()[0];
+            Object shell = cmsShellContructor.newInstance(openCmsWebDir.toString(), openCmsServeltMapping, openCmsWebappName, "opencms/> ", null);
+            Method startShell = cmsShellClazz.getDeclaredMethod(METHOD_START, start_parameters);
+            fileInputStream = new FileInputStream(installScript);
+            startShell.invoke(shell, fileInputStream);
 		} catch (Exception e) {
 			// errores en la reflexión -- problema de versiones
 			throw new MojoExecutionException("Error durante la invocación del script OpenCms", e);
-		}
-	}
+		} finally {
+            if(fileInputStream!=null) {
+                try {
+                    fileInputStream.close();
+                } catch (IOException e) {
+                    log.warn(e);
+                }
+            }
+        }
+    }
 
 	/**
 	 * 

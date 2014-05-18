@@ -1,4 +1,4 @@
-package com.camomileware.maven.plugin.opencms.util;
+package com.kamomileware.maven.plugin.opencms.util;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -14,7 +14,7 @@ import java.util.List;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.logging.Log;
 
-import com.camomileware.maven.plugin.opencms.ModuleDescriptor;
+import com.kamomileware.maven.plugin.opencms.ModuleDescriptor;
 
 /**
  * 
@@ -44,12 +44,8 @@ public class OpenCmsScriptUtils {
 		return createTempFile(moduleName, sb.toString(), "uninstallModule_", ".ocsh");
 	}
 
-	private static void exitCommand(StringBuilder sb) {
-		sb.append("exit\n");
-	}
-
 	/**
-	 * 
+	 *
 	 * @param moduleName
 	 * @param moduleFile
 	 * @param username
@@ -64,7 +60,7 @@ public class OpenCmsScriptUtils {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param moduleName
 	 * @param moduleFile
 	 * @param username
@@ -88,12 +84,25 @@ public class OpenCmsScriptUtils {
 		if (doexit) {
 			exitCommand(sb);
 		}
-
 		return createTempFile(moduleName, sb.toString(), "installModule_", ".ocsh");
 	}
 
+    /**
+     *
+     * @param username
+     * @param password
+     * @return
+     */
+    public static File buildClearCachesScript(String username, String password) throws IOException {
+        StringBuilder sb = new StringBuilder();
+        loginCommand(username, password, sb);
+        clearCachesCommand(sb);
+        exitCommand(sb);
+        return createTempFile("clearCaches", sb.toString(), "clearCaches_", ".ocsh");
+    }
+
 	/**
-	 * 
+	 *
 	 * @param modulesToInstall
 	 * @param username
 	 * @param password
@@ -107,7 +116,7 @@ public class OpenCmsScriptUtils {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param modulesToInstall
 	 * @param username
 	 * @param password
@@ -137,7 +146,11 @@ public class OpenCmsScriptUtils {
 		return createTempFile("", sb.toString(), "multipleModuleInstall_", ".ocsh");
 	}
 
-	private static void deleteModuleCommand(String module, StringBuilder sb) {
+    private static void exitCommand(StringBuilder sb) {
+        sb.append("exit\n");
+    }
+
+    private static void deleteModuleCommand(String module, StringBuilder sb) {
 		sb.append("deleteModule \"").append(correctModuleName(module)).append("\"\n");
 	}
 
@@ -153,20 +166,24 @@ public class OpenCmsScriptUtils {
 		sb.append("login ").append(username).append(" ").append(password).append("\n");
 	}
 
+    private static void clearCachesCommand(StringBuilder sb) {
+        sb.append("clearCaches\n");
+    }
+
 	/**
 	 * 
-	 * @param moduleName
+	 * @param filename
 	 * @param content
 	 * @param prefix
 	 * @param suffix
 	 * @return
 	 * @throws IOException
 	 */
-	private static File createTempFile(String moduleName, String content, String prefix, String suffix) throws IOException {
+	private static File createTempFile(String filename, String content, String prefix, String suffix) throws IOException {
 		File script = null;
 		FileWriter writer = null;
 		try {
-			script = File.createTempFile(prefix + moduleName + "_", suffix);
+			script = File.createTempFile(prefix + filename + "_", suffix);
 			script.deleteOnExit();
 			writer = new FileWriter(script);
 			writer.write(content.toString());
@@ -213,8 +230,6 @@ public class OpenCmsScriptUtils {
 	 *            directorio WEB-INF de OpenCms
 	 * @param moduleFile
 	 *            fichero de módulo a copiar
-	 * @param log
-	 *            logger de la construcción
 	 * @throws MojoExecutionException
 	 *             error durante la copia del fichero
 	 */
@@ -263,4 +278,6 @@ public class OpenCmsScriptUtils {
 	public static void setLog(Log log) {
 		OpenCmsScriptUtils.log = log;
 	}
+
+
 }

@@ -1,4 +1,4 @@
-package com.camomileware.maven.plugin.opencms;
+package com.kamomileware.maven.plugin.opencms;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -7,6 +7,11 @@ import java.util.Properties;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugins.annotations.Parameter;
 
+/**
+ * Base class for module cmd operations
+ *
+ * @author jagarcia
+ */
 public abstract class ModuleBaseMojo extends OpenCmsCmdBaseMojo {
 
 	public static final String MANIFEST_MODULE_VERSION_PROPERTY 	= "manifest.module.version";
@@ -19,7 +24,7 @@ public abstract class ModuleBaseMojo extends OpenCmsCmdBaseMojo {
      * Location of the module file to install.
      * Defaults to <code>target/&lt;artifactId&gt;-&lt;version&gt;.zip</code>.
      */
-    @Parameter(property="module.file",defaultValue="${project.build.directory}/${project.artifactId}-${project.version}.zip",required=true)
+    @Parameter(property="module.file",defaultValue="${project.build.directory}/${project.build.finalName}.zip",required=true)
     protected File moduleFile;
 
     /**
@@ -48,13 +53,11 @@ public abstract class ModuleBaseMojo extends OpenCmsCmdBaseMojo {
 		}
 		moduleName = getModuleName();
 		// check base dir for openCms
-		if (!getOpenCmsWebInfDir().exists()) {
-			throw new MojoExecutionException("Directorio WEB-INF de OpenCms no existe " + getOpenCmsWebInfDir());
-		}
-		return true;
+        checkOpenCmsWebInfDir();
+        return true;
 	}
 
-	/**
+    /**
 	 * Calcula el nombre del módulo a instalar a partir de las propiedades del
 	 * sistema
 	 * 

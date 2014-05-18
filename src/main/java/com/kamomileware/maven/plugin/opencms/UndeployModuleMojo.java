@@ -1,4 +1,4 @@
-package com.camomileware.maven.plugin.opencms;
+package com.kamomileware.maven.plugin.opencms;
 
 import java.io.File;
 import java.io.IOException;
@@ -6,7 +6,7 @@ import java.io.IOException;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugins.annotations.Mojo;
 
-import com.camomileware.maven.plugin.opencms.util.OpenCmsScriptUtils;
+import com.kamomileware.maven.plugin.opencms.util.OpenCmsScriptUtils;
 
 /**
  * Generates and execute a script for deleting the module indicate by property
@@ -15,8 +15,8 @@ import com.camomileware.maven.plugin.opencms.util.OpenCmsScriptUtils;
  * 
  * @author jagarcia
  */
-@Mojo(name="uninstall-module", requiresProject=true)
-public class UninstallModuleMojo extends ModuleBaseMojo {
+@Mojo(name="undeploy", requiresProject=true)
+public class UndeployModuleMojo extends ModuleBaseMojo {
 
 	@Override
 	protected void prepareExecution() throws MojoExecutionException {

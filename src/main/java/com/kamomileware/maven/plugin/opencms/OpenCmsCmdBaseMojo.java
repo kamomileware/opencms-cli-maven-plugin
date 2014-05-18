@@ -1,4 +1,4 @@
-package com.camomileware.maven.plugin.opencms;
+package com.kamomileware.maven.plugin.opencms;
 
 import java.io.File;
 import java.io.IOException;
@@ -11,8 +11,8 @@ import org.apache.maven.project.MavenProject;
 import org.apache.maven.settings.Server;
 import org.apache.maven.settings.Settings;
 
-import com.camomileware.maven.plugin.opencms.util.OpenCmsScriptUtils;
-import com.camomileware.maven.plugin.opencms.util.OpenCmsShellStarter;
+import com.kamomileware.maven.plugin.opencms.util.OpenCmsScriptUtils;
+import com.kamomileware.maven.plugin.opencms.util.OpenCmsShellStarter;
 
 /**
  * 
@@ -104,7 +104,7 @@ public abstract class OpenCmsCmdBaseMojo extends AbstractMojo {
 		}
 		// Execute the script
 		OpenCmsShellStarter.executeOpenCmsScript(getOpenCmsWebInfDir(), appServerBaseDir, openCmsServetMapping, openCmsWebappName,
-				"opencms/> ", script);
+				getLog(), script);
 	}
 
 	abstract protected boolean checkConditions() throws MojoExecutionException;
@@ -141,6 +141,16 @@ public abstract class OpenCmsCmdBaseMojo extends AbstractMojo {
 		}
 		return serverSettings;
 	}
+
+    /**
+     *
+     * @throws MojoExecutionException
+     */
+    protected void checkOpenCmsWebInfDir() throws MojoExecutionException {
+        if (!getOpenCmsWebInfDir().exists()) {
+            throw new MojoExecutionException("Directorio WEB-INF de OpenCms no existe " + getOpenCmsWebInfDir());
+        }
+    }
 
 	// Setters & getters
 	public MavenProject getProject() {

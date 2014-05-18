@@ -1,4 +1,4 @@
-package com.camomileware.maven.plugin.opencms;
+package com.kamomileware.maven.plugin.opencms;
 
 /*
  * Copyright 2001-2005 The Apache Software Foundation.
@@ -23,23 +23,18 @@ import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
 
-import com.camomileware.maven.plugin.opencms.util.OpenCmsScriptUtils;
+import com.kamomileware.maven.plugin.opencms.util.OpenCmsScriptUtils;
 
 /**
- * Goal which copies the module file to the OpenCms application configured in
- * the project and then installs it. The module file is copied to
- * <code>${opencms.home}/WEB-INF/packages/modules</code> directory. The
- * installation is done via generated script by CmsShell.
+ * Deploys a opencms-module project to a configure instance of OpenCms.
+ * The module file is copied to <code>${opencms.home}/WEB-INF/packages/modules</code> directory.
+ * The installation is done via CmsShell by a generated script.
+ *
+ * @author jagarcia
  */
-@Mojo(name="install-module", requiresProject=true)
-public class InstallModuleMojo extends ModuleBaseMojo {
+@Mojo(name="deploy", requiresProject=true )
 
-	/**
-	 * Selects to update the module or a fresh install, for installing previous
-	 * module version Defaults to <code>"true"</code>
-	 */
-	@Parameter(property="fresh.install", defaultValue="true") 
-	private boolean freshInstall;
+public class DeployModuleMojo extends ModuleBaseMojo {
 
 	@Override
 	protected void prepareExecution() throws MojoExecutionException {
@@ -49,6 +44,6 @@ public class InstallModuleMojo extends ModuleBaseMojo {
 
 	@Override
 	protected File getScriptToExecute() throws IOException {
-		return OpenCmsScriptUtils.buildInstallScript(moduleName, moduleFile, openCmsUserName, openCmsUserPass, freshInstall);
+		return OpenCmsScriptUtils.buildInstallScript(moduleName, moduleFile, openCmsUserName, openCmsUserPass, false);
 	}
 }

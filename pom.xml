@@ -80,7 +80,7 @@
 				</configuration>
 				<executions>
 					<execution>
-						<id></id>
+						<id>precompile-for-annotations</id>
 						<phase>process-sources</phase>
 						<goals>
 							<goal>compile</goal>
