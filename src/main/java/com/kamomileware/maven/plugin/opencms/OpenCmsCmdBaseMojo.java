@@ -15,9 +15,9 @@ import com.kamomileware.maven.plugin.opencms.util.OpenCmsScriptUtils;
 import com.kamomileware.maven.plugin.opencms.util.OpenCmsShellStarter;
 
 /**
- * 
+ *
  * @author jagarcia
- * 
+ *
  */
 public abstract class OpenCmsCmdBaseMojo extends AbstractMojo {
 
@@ -26,12 +26,12 @@ public abstract class OpenCmsCmdBaseMojo extends AbstractMojo {
 	/**
 	 * The maven project.
 	 */
-	@Component 
+    @Parameter( defaultValue = "${project}", readonly = true )
 	private MavenProject project;
 
 	/**
 	 */
-	@Component
+    @Parameter(defaultValue = "${settings}", readonly = true )
 	private Settings settings;
 
 	/**
@@ -128,7 +128,7 @@ public abstract class OpenCmsCmdBaseMojo extends AbstractMojo {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param serverId
 	 * @return
 	 */
