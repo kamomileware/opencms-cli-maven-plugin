@@ -81,8 +81,6 @@
           <extractors>
             <extractor>java-annotations</extractor>
           </extractors>
-          <requirements>
-          </requirements>
         </configuration>
         <executions>
           <execution>
