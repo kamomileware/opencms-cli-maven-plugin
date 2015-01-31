@@ -1,95 +1,90 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
 
-	<parent>
-		<groupId>com.kamomileware.maven.plugin</groupId>
-		<artifactId>maven-plugins-parent</artifactId>
-		<version>2-SNAPSHOT</version>
-	</parent>
+  <parent>
+    <groupId>com.kamomileware.maven.plugin</groupId>
+    <artifactId>maven-plugins-parent</artifactId>
+    <version>2-SNAPSHOT</version>
+  </parent>
 
-	<groupId>com.kamomileware.maven.plugin.opencms</groupId>
-	<artifactId>opencms-cli-maven-plugin</artifactId>
-	<version>0.1.0-SNAPSHOT</version>
-	<packaging>maven-plugin</packaging>
+  <groupId>com.kamomileware.maven.plugin.opencms</groupId>
+  <artifactId>opencms-cli-maven-plugin</artifactId>
+  <version>0.1.0-SNAPSHOT</version>
+  <packaging>maven-plugin</packaging>
 
-	<name>OpenCms Command Line Maven Plugin</name>
-	<description>Allows operative execution via OpenCmsCommand interface.</description>
+  <name>OpenCms Command Line Maven Plugin</name>
+  <description>Allows operative execution via OpenCmsCommand interface.</description>
 
-	<scm>
+  <scm>
     <connection>scm:git:git@github.com:kamomileware/opencms-cli-maven-plugin.git</connection>
     <developerConnection>scm:git:git@github.com:kamomileware/opencms-cli-maven-plugin.git</developerConnection>
     <url>scm:git:git@github.com:kamomileware/opencms-cli-maven-plugin.git</url>
-	</scm>
+  </scm>
 
-	<properties>
-		<maven.version>3.2.2</maven.version>
+  <properties>
+    <maven.version>3.2.2</maven.version>
     <maven.plugins.tools>3.4</maven.plugins.tools>
-	</properties>
+  </properties>
 
-	<dependencies>
-		<dependency>
-			<groupId>org.apache.maven.plugin-tools</groupId>
-			<artifactId>maven-plugin-annotations</artifactId>
-			<version>${maven.plugins.tools}</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.maven.plugin-tools</groupId>
-			<artifactId>maven-plugin-tools</artifactId>
-			<version>${maven.plugins.tools}</version>
-			<type>pom</type>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.maven</groupId>
-			<artifactId>maven-plugin-api</artifactId>
-			<version>${maven.version}</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.maven</groupId>
-			<artifactId>maven-core</artifactId>
-			<version>${maven.version}</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.maven</groupId>
-			<artifactId>maven-settings</artifactId>
-			<version>${maven.version}</version>
-			<scope>provided</scope>
-		</dependency>
-	</dependencies>
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<executions>
-					<execution>
-						<id>precompile-for-annotations</id>
-						<phase>process-sources</phase>
-						<goals>
-							<goal>compile</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-plugin-plugin</artifactId>
-				<configuration>
-					<extractors>
-						<extractor>java-annotations</extractor>
-					</extractors>
-					<requirements>
-					</requirements>
-				</configuration>
+  <dependencies>
+    <dependency>
+      <groupId>org.apache.maven.plugin-tools</groupId>
+      <artifactId>maven-plugin-annotations</artifactId>
+      <version>${maven.plugins.tools}</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.maven.plugin-tools</groupId>
+      <artifactId>maven-plugin-tools</artifactId>
+      <version>${maven.plugins.tools}</version>
+      <type>pom</type>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.maven</groupId>
+      <artifactId>maven-plugin-api</artifactId>
+      <version>${maven.version}</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.maven</groupId>
+      <artifactId>maven-core</artifactId>
+      <version>${maven.version}</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.maven</groupId>
+      <artifactId>maven-settings</artifactId>
+      <version>${maven.version}</version>
+      <scope>provided</scope>
+    </dependency>
+  </dependencies>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
         <executions>
-          <!-- <execution>
-            <id>default-descriptor</id>
-            <phase>process-classes</phase>
+          <execution>
+            <id>precompile-for-annotations</id>
+            <phase>process-sources</phase>
+            <goals>
+              <goal>compile</goal>
+            </goals>
           </execution>
-          if you want to generate help goal -->
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-plugin-plugin</artifactId>
+        <configuration>
+          <extractors>
+            <extractor>java-annotations</extractor>
+          </extractors>
+          <requirements>
+          </requirements>
+        </configuration>
+        <executions>
           <execution>
             <id>help-goal</id>
             <phase>process-classes</phase>
@@ -98,7 +93,7 @@
             </goals>
           </execution>
         </executions>
-			</plugin>
-		</plugins>
-	</build>
+      </plugin>
+    </plugins>
+  </build>
 </project>
