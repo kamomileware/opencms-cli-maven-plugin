@@ -1,39 +1,33 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-
   <parent>
     <groupId>com.kamomileware.maven.plugin</groupId>
     <artifactId>maven-plugins-parent</artifactId>
-    <version>3-SNAPSHOT</version>
+    <version>3</version>
   </parent>
-
   <groupId>com.kamomileware.maven.plugin.opencms</groupId>
   <artifactId>opencms-cli-maven-plugin</artifactId>
   <version>0.1.1-SNAPSHOT</version>
   <packaging>maven-plugin</packaging>
-
   <name>OpenCms Command Line Maven Plugin</name>
   <description>Allows operative execution via OpenCmsCommand interface.</description>
-
+  <url>https://github.com/kamomileware/opencms-cli-module-maven-plugin</url>
   <scm>
     <connection>scm:git:git@github.com:kamomileware/opencms-cli-maven-plugin.git</connection>
-    <developerConnection>scm:git:git@github.com:kamomileware/opencms-cli-maven-plugin.git</developerConnection>
-    <url>scm:git:git@github.com:kamomileware/opencms-cli-maven-plugin.git</url>
+    <developerConnection>scm:git:git@github.com:kw.kamomileware/opencms-cli-maven-plugin.git</developerConnection>
+    <url>https://github.com:kamomileware/opencms-cli-maven-plugin.git</url>
     <tag>HEAD</tag>
   </scm>
-
   <distributionManagement>
     <site>
       <id>kamomileware.git.server</id>
-      <url>gitsite:git@github.com/kamomileware/${project.artifactId}.git</url>
+      <url>gitsite:git@kw.github.com/kamomileware/${project.artifactId}.git</url>
     </site>
   </distributionManagement>
-
   <properties>
     <maven.version>3.2.2</maven.version>
     <maven.plugins.tools>3.4</maven.plugins.tools>
   </properties>
-
   <dependencies>
     <dependency>
       <groupId>org.apache.maven.plugin-tools</groupId>
