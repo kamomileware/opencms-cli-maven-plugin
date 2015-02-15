@@ -4,7 +4,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>OpenCms Command Line Maven Plugin - 
-    opencms-cli:clear-caches</title>
+    opencms-cli:help</title>
     <style type="text/css" media="all">
       @import url("./css/maven-base.css");
       @import url("./css/maven-theme.css");
@@ -70,60 +70,24 @@
         
   
     <div class="section">
-<h2>opencms-cli:clear-caches<a name="opencms-cli:clear-caches"></a></h2>
+<h2>opencms-cli:help<a name="opencms-cli:help"></a></h2>
       
 <p><b>Full name</b>:</p>
       
-<p>com.kamomileware.maven.plugin.opencms:opencms-cli-maven-plugin:1.0:clear-caches</p>
+<p>com.kamomileware.maven.plugin.opencms:opencms-cli-maven-plugin:1.0:help</p>
       
 <p><b>Description</b>:</p>
       
-<div>This mojo invokes clearCaches operation on a configured OpenCms
-instance via CmsShell.</div>
+<div>Display help information on opencms-cli-maven-plugin.<br />
+Call <tt>mvn opencms-cli:help -Ddetail=true
+-Dgoal=&lt;goal-name&gt;</tt> to display parameter details.</div>
       
 <p><b>Attributes</b>:</p>
       
-<div class="section">
-<h3>Required Parameters<a name="Required_Parameters"></a></h3>
+<ul>
         
-<table class="bodyTable" border="0">
-          
-<tr class="a">
-            
-<th>Name</th>
-            
-<th>Type</th>
-            
-<th>Since</th>
-            
-<th>Description</th>
-          </tr>
-          
-<tr class="b">
-            
-<td><b><a href="#appServerBaseDir">appServerBaseDir</a></b></td>
-            
-<td><tt>File</tt></td>
-            
-<td><tt>-</tt></td>
-            
-<td>Base dir for servlet container installation (tomcat). Defaults to
-<tt>${catalina.base}&quot;</tt>.<br /><b>Default value is</b>: <tt>${catalina.base}</tt>.<br /><b>User property is</b>: <tt>catalina.base</tt>.</td>
-          </tr>
-          
-<tr class="a">
-            
-<td><b><a href="#openCmsBaseDir">openCmsBaseDir</a></b></td>
-            
-<td><tt>String</tt></td>
-            
-<td><tt>-</tt></td>
-            
-<td>Base dir for OpenCms installation. Defaults to
-<tt>${catalina.home}/webapps/ROOT&quot;</tt>.<br /><b>Default value is</b>: <tt>${catalina.home}/webapps/ROOT</tt>.<br /><b>User property is</b>: <tt>opencms.home</tt>.</td>
-          </tr>
-        </table>
-      </div>
+<li>The goal is thread-safe and supports parallel builds.</li>
+      </ul>
       
 <div class="section">
 <h3>Optional Parameters<a name="Optional_Parameters"></a></h3>
@@ -143,57 +107,48 @@ instance via CmsShell.</div>
           
 <tr class="b">
             
-<td><b><a href="#openCmsServerAuthId">openCmsServerAuthId</a></b></td>
+<td><b><a href="#detail">detail</a></b></td>
             
-<td><tt>String</tt></td>
+<td><tt>boolean</tt></td>
             
 <td><tt>-</tt></td>
             
-<td>Id credentials in settings<br /><b>User property is</b>: <tt>opencms.server.id</tt>.</td>
+<td>If <tt>true</tt>, display all settable properties for each
+goal.<br /><b>Default value is</b>: <tt>false</tt>.<br /><b>User property is</b>: <tt>detail</tt>.</td>
           </tr>
           
 <tr class="a">
             
-<td><b><a href="#openCmsServetMapping">openCmsServetMapping</a></b></td>
+<td><b><a href="#goal">goal</a></b></td>
             
 <td><tt>String</tt></td>
             
 <td><tt>-</tt></td>
             
-<td>Mapping for the OpenCms dispatcher servlet. Defaults to &quot;/*&quot;.<br /><b>User property is</b>: <tt>opencms.servlet.mapping</tt>.</td>
+<td>The name of the goal for which to show help. If unspecified, all
+goals will be displayed.<br /><b>User property is</b>: <tt>goal</tt>.</td>
           </tr>
           
 <tr class="b">
             
-<td><b><a href="#openCmsUserName">openCmsUserName</a></b></td>
+<td><b><a href="#indentSize">indentSize</a></b></td>
             
-<td><tt>String</tt></td>
+<td><tt>int</tt></td>
             
 <td><tt>-</tt></td>
             
-<td>User that installs the module on the OpenCms instance.<br /><b>User property is</b>: <tt>opencms.user.name</tt>.</td>
+<td>The number of spaces per indentation level, should be positive.<br /><b>Default value is</b>: <tt>2</tt>.<br /><b>User property is</b>: <tt>indentSize</tt>.</td>
           </tr>
           
 <tr class="a">
             
-<td><b><a href="#openCmsUserPass">openCmsUserPass</a></b></td>
+<td><b><a href="#lineLength">lineLength</a></b></td>
             
-<td><tt>String</tt></td>
-            
-<td><tt>-</tt></td>
-            
-<td>Credentials for the OpenCms user.<br /><b>User property is</b>: <tt>opencms.user.pass</tt>.</td>
-          </tr>
-          
-<tr class="b">
-            
-<td><b><a href="#openCmsWebappName">openCmsWebappName</a></b></td>
-            
-<td><tt>String</tt></td>
+<td><tt>int</tt></td>
             
 <td><tt>-</tt></td>
             
-<td>Name of the webapp aplication name for OpenCms.<br /><b>User property is</b>: <tt>opencms.webapp.name</tt>.</td>
+<td>The maximum length of a display line, should be positive.<br /><b>Default value is</b>: <tt>80</tt>.<br /><b>User property is</b>: <tt>lineLength</tt>.</td>
           </tr>
         </table>
       </div>
@@ -201,39 +156,25 @@ instance via CmsShell.</div>
 <div class="section">
 <h3>Parameter Details<a name="Parameter_Details"></a></h3>
         
-<p><b><a name="appServerBaseDir">appServerBaseDir</a>:</b></p>
+<p><b><a name="detail">detail</a>:</b></p>
         
-<div>Base dir for servlet container installation (tomcat). Defaults to
-<tt>${catalina.base}&quot;</tt>.</div>
-        
-<ul>
-          
-<li><b>Type</b>: <tt>java.io.File</tt></li>
-          
-<li><b>Required</b>: <tt>Yes</tt></li>
-          
-<li><b>User Property</b>: <tt>catalina.base</tt></li>
-          
-<li><b>Default</b>: <tt>${catalina.base}</tt></li>
-        </ul><hr />
-<p><b><a name="openCmsBaseDir">openCmsBaseDir</a>:</b></p>
-        
-<div>Base dir for OpenCms installation. Defaults to
-<tt>${catalina.home}/webapps/ROOT&quot;</tt>.</div>
+<div>If <tt>true</tt>, display all settable properties for each
+goal.</div>
         
 <ul>
           
-<li><b>Type</b>: <tt>java.lang.String</tt></li>
+<li><b>Type</b>: <tt>boolean</tt></li>
           
-<li><b>Required</b>: <tt>Yes</tt></li>
+<li><b>Required</b>: <tt>No</tt></li>
           
-<li><b>User Property</b>: <tt>opencms.home</tt></li>
+<li><b>User Property</b>: <tt>detail</tt></li>
           
-<li><b>Default</b>: <tt>${catalina.home}/webapps/ROOT</tt></li>
+<li><b>Default</b>: <tt>false</tt></li>
         </ul><hr />
-<p><b><a name="openCmsServerAuthId">openCmsServerAuthId</a>:</b></p>
+<p><b><a name="goal">goal</a>:</b></p>
         
-<div>Id credentials in settings</div>
+<div>The name of the goal for which to show help. If unspecified, all
+goals will be displayed.</div>
         
 <ul>
           
@@ -241,55 +182,35 @@ instance via CmsShell.</div>
           
 <li><b>Required</b>: <tt>No</tt></li>
           
-<li><b>User Property</b>: <tt>opencms.server.id</tt></li>
+<li><b>User Property</b>: <tt>goal</tt></li>
         </ul><hr />
-<p><b><a name="openCmsServetMapping">openCmsServetMapping</a>:</b></p>
+<p><b><a name="indentSize">indentSize</a>:</b></p>
         
-<div>Mapping for the OpenCms dispatcher servlet. Defaults to &quot;/*&quot;.</div>
+<div>The number of spaces per indentation level, should be positive.</div>
         
 <ul>
           
-<li><b>Type</b>: <tt>java.lang.String</tt></li>
+<li><b>Type</b>: <tt>int</tt></li>
           
 <li><b>Required</b>: <tt>No</tt></li>
           
-<li><b>User Property</b>: <tt>opencms.servlet.mapping</tt></li>
+<li><b>User Property</b>: <tt>indentSize</tt></li>
+          
+<li><b>Default</b>: <tt>2</tt></li>
         </ul><hr />
-<p><b><a name="openCmsUserName">openCmsUserName</a>:</b></p>
+<p><b><a name="lineLength">lineLength</a>:</b></p>
         
-<div>User that installs the module on the OpenCms instance.</div>
+<div>The maximum length of a display line, should be positive.</div>
         
 <ul>
           
-<li><b>Type</b>: <tt>java.lang.String</tt></li>
+<li><b>Type</b>: <tt>int</tt></li>
           
 <li><b>Required</b>: <tt>No</tt></li>
           
-<li><b>User Property</b>: <tt>opencms.user.name</tt></li>
-        </ul><hr />
-<p><b><a name="openCmsUserPass">openCmsUserPass</a>:</b></p>
-        
-<div>Credentials for the OpenCms user.</div>
-        
-<ul>
+<li><b>User Property</b>: <tt>lineLength</tt></li>
           
-<li><b>Type</b>: <tt>java.lang.String</tt></li>
-          
-<li><b>Required</b>: <tt>No</tt></li>
-          
-<li><b>User Property</b>: <tt>opencms.user.pass</tt></li>
-        </ul><hr />
-<p><b><a name="openCmsWebappName">openCmsWebappName</a>:</b></p>
-        
-<div>Name of the webapp aplication name for OpenCms.</div>
-        
-<ul>
-          
-<li><b>Type</b>: <tt>java.lang.String</tt></li>
-          
-<li><b>Required</b>: <tt>No</tt></li>
-          
-<li><b>User Property</b>: <tt>opencms.webapp.name</tt></li>
+<li><b>Default</b>: <tt>80</tt></li>
         </ul>
       </div>
     </div>
