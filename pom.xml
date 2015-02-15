@@ -22,6 +22,13 @@
     <tag>HEAD</tag>
   </scm>
 
+  <distributionManagement>
+    <site>
+      <id>kamomileware.git.server</id>
+      <url>gitsite:git@github.com/kamomileware/${project.artifactId}.git</url>
+    </site>
+  </distributionManagement>
+
   <properties>
     <maven.version>3.2.2</maven.version>
     <maven.plugins.tools>3.4</maven.plugins.tools>
@@ -59,39 +66,4 @@
       <scope>provided</scope>
     </dependency>
   </dependencies>
-  <build>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <executions>
-          <execution>
-            <id>precompile-for-annotations</id>
-            <phase>process-sources</phase>
-            <goals>
-              <goal>compile</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-plugin-plugin</artifactId>
-        <configuration>
-          <extractors>
-            <extractor>java-annotations</extractor>
-          </extractors>
-        </configuration>
-        <executions>
-          <execution>
-            <id>help-goal</id>
-            <phase>process-classes</phase>
-            <goals>
-              <goal>helpmojo</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-    </plugins>
-  </build>
 </project>
