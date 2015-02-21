@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<document xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/changes/1.0.0"
+	xsi:schemaLocation="http://maven.apache.org/changes/1.0.0 http://maven.apache.org/plugins/maven-changes-plugin/xsd/changes-1.0.0.xsd">
+	<properties>
+		<title>OpenCms module command execution plugin project</title>
+		<author email="kamomileware@gmail.com">José Ángel García</author>
+	</properties>
+	<body>
+		<release version="1.1" date="2015-02-21" description="Subsequent release">
+		  <action dev="jagarcia" type="update">
+        New parent version 4.
+		  </action>
+      <action dev="jagarcia" type="update">
+        Refactor dependencies.
+      </action>
+      <action dev="jagarcia" type="update">
+        Add 'touch' command after installing modules
+      </action>
+    </release>
+    <release version="1.0" date="2015-02-1" description="Public release">
+      <action dev="jagarcia" type="update">
+        Redesign plugin, taking the module builder mojo to opencms-module-maven-plugin.
+      </action>
+      <action dev="jagarcia" type="update">
+        Includes compatibility with 9.5 opencms version.
+      </action>
+    </release>
+  </body>
+</document>
