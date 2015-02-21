@@ -17,9 +17,9 @@ import org.apache.maven.plugin.logging.Log;
 import com.kamomileware.maven.plugin.opencms.ModuleDescriptor;
 
 /**
- * 
+ *
  * @author joseangel
- * 
+ *
  */
 public class OpenCmsScriptUtils {
 
@@ -28,7 +28,7 @@ public class OpenCmsScriptUtils {
 	private static Log log;
 
 	/**
-	 * 
+	 *
 	 * @param moduleName
 	 * @param username
 	 * @param password
@@ -80,6 +80,7 @@ public class OpenCmsScriptUtils {
 		}
 
 		importModuleCommand(moduleFile.getName(), sb);
+    touchCommand(moduleName, sb);
 
 		if (doexit) {
 			exitCommand(sb);
@@ -137,6 +138,7 @@ public class OpenCmsScriptUtils {
 		for (ModuleDescriptor module : modulesToInstall) {
 			if (module.isInstall() == null || module.isInstall()) {
 				importModuleCommand(module.getModuleFile().getName(), sb);
+        touchCommand(module.getModuleName(),sb);
 			}
 		}
 		if (doexit) {
@@ -166,12 +168,16 @@ public class OpenCmsScriptUtils {
 		sb.append("login ").append(username).append(" ").append(password).append("\n");
 	}
 
-    private static void clearCachesCommand(StringBuilder sb) {
+  private static void touchCommand(String modulename, StringBuilder sb) {
+    sb.append("setDateLastModified /system/modules/").append(modulename).append(" ").append(System.currentTimeMillis()).append(" ").append("true").append("\n");
+  }
+
+  private static void clearCachesCommand(StringBuilder sb) {
         sb.append("clearCaches\n");
     }
 
 	/**
-	 * 
+	 *
 	 * @param filename
 	 * @param content
 	 * @param prefix
@@ -225,7 +231,7 @@ public class OpenCmsScriptUtils {
 
 	/**
 	 * Calcula la ruta del fichero destino e invoca la operacion de copia
-	 * 
+	 *
 	 * @param openCmsWebDir
 	 *            directorio WEB-INF de OpenCms
 	 * @param moduleFile
@@ -247,7 +253,7 @@ public class OpenCmsScriptUtils {
 
 	/**
 	 * Utilidad de copia de ficheros
-	 * 
+	 *
 	 * @param sourceFile
 	 *            fichero origen
 	 * @param destFile

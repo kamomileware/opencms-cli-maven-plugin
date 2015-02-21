@@ -47,6 +47,7 @@ public class OpenCmsShellStarter {
         try {
       Constructor<?> cmsShellContructor = cmsShellClazz.getConstructor(String.class, String.class, String.class, String.class, cmsShellCommand);
             Object shell = cmsShellContructor.newInstance(openCmsWebDir.toString(), openCmsServeltMapping, openCmsWebappName, "opencms/> ", null);
+            //org.opencms.main.CmsShell cmsShell = (org.opencms.main.CmsShell)shell;
             Method startShell = cmsShellClazz.getDeclaredMethod(METHOD_START, start_parameters);
             fileInputStream = new FileInputStream(installScript);
             startShell.invoke(shell, fileInputStream);
