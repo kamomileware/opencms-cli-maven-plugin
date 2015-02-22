@@ -34,12 +34,11 @@ public class OpenCmsShellStarter {
    * @param appServerBaseDir application server base directory (${catalina.home})
    * @param openCmsServeltMapping mapping for the opencms servlet
    * @param openCmsWebappName opencms webapp name
-   * @param log logger to output the process log
    * @param installScript script to execute in the shell
    * @throws MojoExecutionException error in execution or configuration
 	 */
 	public static void executeOpenCmsScript(File openCmsWebDir, File appServerBaseDir, String openCmsServeltMapping,
-			String openCmsWebappName, Log log, File installScript) throws MojoExecutionException {
+			String openCmsWebappName, File installScript) throws MojoExecutionException {
 		// recoge la definición de la clase shell de OpenCms
     Class<?> cmsShellClazz = getOpenCmsClass(openCmsWebDir, appServerBaseDir, "org.opencms.main.CmsShell");
     Class<?> cmsShellCommand = getOpenCmsClass(openCmsWebDir, appServerBaseDir, "org.opencms.main.I_CmsShellCommands");

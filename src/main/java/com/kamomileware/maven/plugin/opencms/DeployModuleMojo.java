@@ -16,14 +16,13 @@ package com.kamomileware.maven.plugin.opencms;
  * limitations under the License.
  */
 
-import java.io.File;
-import java.io.IOException;
-
+import com.kamomileware.maven.plugin.opencms.util.OpenCmsScriptUtils;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
 
-import com.kamomileware.maven.plugin.opencms.util.OpenCmsScriptUtils;
+import java.io.File;
+import java.io.IOException;
 
 /**
  * Deploys a opencms-module project to a configure instance of OpenCms.
@@ -32,18 +31,21 @@ import com.kamomileware.maven.plugin.opencms.util.OpenCmsScriptUtils;
  *
  * @author jagarcia
  */
-@Mojo(name="deploy", requiresProject=true )
+@Mojo(name = "deploy", requiresProject = true)
 
 public class DeployModuleMojo extends ModuleBaseMojo {
 
-	@Override
-	protected void prepareExecution() throws MojoExecutionException {
-		// Copy the module to the install directory
-		OpenCmsScriptUtils.copyFileToModulesDir(getOpenCmsWebInfDir(), moduleFile);
-	}
+  @Parameter(property = "module.touch", defaultValue = "true")
+  protected boolean doTouch;
 
-	@Override
-	protected File getScriptToExecute() throws IOException {
-		return OpenCmsScriptUtils.buildInstallScript(moduleName, moduleFile, openCmsUserName, openCmsUserPass, false);
-	}
+  @Override
+  protected void prepareExecution() throws MojoExecutionException {
+    // Copy the module to the install directory
+    OpenCmsScriptUtils.copyFileToModulesDir(getOpenCmsWebInfDir(), moduleFile);
+  }
+
+  @Override
+  protected File getScriptToExecute() throws IOException {
+    return OpenCmsScriptUtils.buildInstallScript(moduleName, moduleFile, openCmsUserName, openCmsUserPass, false, doTouch);
+  }
 }

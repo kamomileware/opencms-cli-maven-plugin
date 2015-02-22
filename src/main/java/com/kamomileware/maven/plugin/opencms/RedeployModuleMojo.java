@@ -33,6 +33,9 @@ import java.io.IOException;
 @Mojo(name="redeploy", requiresProject=true)
 public class RedeployModuleMojo extends ModuleBaseMojo {
 
+  @Parameter(property = "module.touch", defaultValue = "true")
+  protected boolean doTouch;
+
 	@Override
 	protected void prepareExecution() throws MojoExecutionException {
 		// Copy the module to the install directory
@@ -41,6 +44,7 @@ public class RedeployModuleMojo extends ModuleBaseMojo {
 
 	@Override
 	protected File getScriptToExecute() throws IOException {
-        return OpenCmsScriptUtils.buildInstallScript(moduleName, moduleFile, openCmsUserName, openCmsUserPass, true);
+      getLog().info("Redeploying module " + moduleName + " from " + moduleFile.getAbsolutePath());
+        return OpenCmsScriptUtils.buildInstallScript(moduleName, moduleFile, openCmsUserName, openCmsUserPass, true, doTouch);
 	}
 }
